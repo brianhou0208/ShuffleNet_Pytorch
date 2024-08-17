@@ -1,6 +1,7 @@
 import torch
 from shufflenet_original import create_shufflenet_original
 from shufflenet_timm import create_shufflenet_timm
+from utils import flops_params
 
 if __name__ == "__main__":
     torch.manual_seed(0)
@@ -14,3 +15,8 @@ if __name__ == "__main__":
 
     print('All close: ', torch.allclose(y_timm, y_original))
     print('MAE: ', torch.mean(torch.abs(y_timm - y_original)).item())
+
+    print('Original Model')
+    flops_params(model_original)
+    print('Timm Model')
+    flops_params(model_timm)
