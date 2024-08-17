@@ -1,5 +1,6 @@
 # ShuffleNet and ShuffleNetV2
 - Reimplement ShuffleNet and ShuffleNetV2 for timm style
+- Mapping original model weight for timm style model
 
 ## Original Prestain Weight
 - OneDrive download: [Link](https://1drv.ms/f/s!AgaP37NGYuEXhRfQxHRseR7eSxXo)
@@ -41,6 +42,9 @@ flops_params(model_timm)
 python valid.py
 ```
 
+```bash
+python mapping_weight.py
+```
 
 ## Results
 |            Model            |  FLOPs  |  MACs   | Params | Top-1 | Top-5 |
