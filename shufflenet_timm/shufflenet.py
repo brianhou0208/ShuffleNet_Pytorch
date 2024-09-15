@@ -1,5 +1,5 @@
-""" ShuffleNet V2
-An implementation of ShuffleNet V1/V2 Model as defined in:
+"""
+An implementation of ShuffleNet & ShuffleNet V2 Model as defined in:
 ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices - https://arxiv.org/abs/1707.01083
 Shufflenet v2: Practical guidelines for efficient cnn architecture design - https://arxiv.org/pdf/1807.11164
 
@@ -346,12 +346,12 @@ class ShuffleNetV2(nn.Module):
         self.act2 = nn.ReLU(inplace=True)
         
         # building last several layers
-        self.num_features = out_chs
+        self.num_features = self.head_hidden_size = out_chs
         # self.global_pool = SelectAdaptivePool2d(pool_type=global_pool)
         # self.global_pool = nn.AdaptiveAvgPool2d(1)
         self.global_pool = nn.AvgPool2d(7)
         self.flatten = nn.Flatten(1) if global_pool else nn.Identity()  # don't flatten if pooling disabled
-        self.classifier = Linear(out_chs, num_classes, bias=False) if num_classes > 0 else nn.Identity()
+        self.classifier = Linear(self.head_hidden_size, num_classes, bias=False) if num_classes > 0 else nn.Identity()
         self._initialize_weights()
 
     @torch.jit.ignore
@@ -378,7 +378,7 @@ class ShuffleNetV2(nn.Module):
         # cannot meaningfully change pooling of efficient head after creation
         self.global_pool = SelectAdaptivePool2d(pool_type=global_pool)
         self.flatten = nn.Flatten(1) if global_pool else nn.Identity()  # don't flatten if pooling disabled
-        self.classifier = Linear(self.num_features, num_classes, bias=False) if num_classes > 0 else nn.Identity()
+        self.classifier = Linear(self.head_hidden_size, num_classes, bias=False) if num_classes > 0 else nn.Identity()
     
     def forward_features(self, x):
         x = self.conv_stem(x)
