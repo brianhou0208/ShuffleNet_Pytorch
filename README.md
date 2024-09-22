@@ -1,8 +1,10 @@
 # ShuffleNet and ShuffleNetV2
+> [!NOTE]
+This is unofficial implement repo
 - Reimplement ShuffleNet and ShuffleNetV2 for timm style
 - Mapping original model weight for timm style model
 
-## Original Prestain Weight
+## Original Pretrain Weight
 - OneDrive download: [Link](https://1drv.ms/f/s!AgaP37NGYuEXhRfQxHRseR7eSxXo)
 - BaiduYun download: [Link](https://pan.baidu.com/s/1EUQVoFPb74yZm0JWHKjFOw) (extract code: mc24)
 
