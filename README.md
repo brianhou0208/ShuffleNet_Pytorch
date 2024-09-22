@@ -49,6 +49,9 @@ python mapping_weight.py
 ```
 
 ## Results
+
+- requirement package [calflops](https://github.com/MrYxJ/calculate-flops.pytorch)
+
 |            Model            |  FLOPs  |  MACs   | Params | Top-1 | Top-5 |
 |:---------------------------:|:-------:|:-------:|:------:|:-----:|:-----:|
 | ShuffleNetV1 0.5x (group=3) | 79.82M  | 37.59M  | 0.72M  | 57.3  | 80.0  |
